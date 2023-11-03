@@ -1,7 +1,5 @@
 import type { Config } from 'tailwindcss'
-import radixPlugin from 'tailwindcss-radix'
 import * as defaultTheme from 'tailwindcss/defaultTheme'
-import plugin from 'tailwindcss/plugin'
 
 export default {
   content: ['./index.html', './src/**/*.{js,ts,tsx}'],
@@ -17,11 +15,5 @@ export default {
       }
     }
   },
-  plugins: [
-    radixPlugin,
-    plugin(({ addVariant }) => {
-      addVariant('radix-side-top', '&[data-side="top"]')
-      addVariant('radix-side-bottom', '&[data-side="bottom"]')
-    })
-  ]
+  plugins: []
 } satisfies Config
