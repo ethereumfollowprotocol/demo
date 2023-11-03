@@ -30,6 +30,7 @@
         "useSelfClosingElements": "off",
         "noUnusedTemplateLiteral": "off"
       },
+      "a11y": { "noSvgWithoutTitle": "off" },
       "nursery": { "noUnusedImports": "off" },
       "suspicious": { "noExplicitAny": "off" },
       "correctness": { "noUndeclaredVariables": "off" }

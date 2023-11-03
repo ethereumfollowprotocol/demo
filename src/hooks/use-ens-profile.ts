@@ -10,9 +10,9 @@ export function useEnsProfile(address: Address) {
     queryKey: [address, 'ens'],
     queryFn: async () => {
       const name = await getEnsName(config, { address })
-      if (!name) return { address: address }
+      if (!name) return { address }
       const avatar = await getEnsAvatar(config, { name: normalize(name) })
-      return { address: address, avatar, name }
+      return { address, avatar, name }
     },
     select: data => data
   })

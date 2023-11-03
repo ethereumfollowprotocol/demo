@@ -8,6 +8,7 @@ import {
   Separator
 } from '@radix-ui/themes'
 import { Header } from '#/components/header.tsx'
+import { Footer } from '#/components/footer.tsx'
 import { useEnsProfile } from '#/hooks/use-ens-profile.ts'
 import { PLACEHOLDER_AVATAR, humanReadableTimestamp } from '#/utilities.ts'
 
@@ -65,18 +66,18 @@ export default function App() {
                 className='text-left'
               >
                 <Text weight='bold' size='6' align='left' className='w-full'>
-                  2524
+                  69
                 </Text>
                 <Separator orientation='vertical' mx='1' />
                 <Text weight='bold' size='6' align='left' className='w-full'>
-                  524
+                  420
                 </Text>
               </Flex>
             </Box>
           </Flex>
         </Flex>
 
-        <Tabs.Root defaultValue='following'>
+        <Tabs.Root defaultValue='following' className='overflow-x-auto'>
           <Tabs.List className='mx-auto justify-center'>
             <Tabs.Trigger value='following'>
               <Text size='4'>Following</Text>
@@ -86,28 +87,32 @@ export default function App() {
             </Tabs.Trigger>
           </Tabs.List>
           <Box py='3'>
-            <Tabs.Content value='following'>
-              <Flex className='space-x-2 max-h-6'>
-                <Code color='pink' className='hidden lg:block'>
-                  {humanReadableTimestamp('2021-11-02T11:19:15+00:00')}
-                </Code>
-                <Code
-                  variant='ghost'
-                  color='orange'
-                  className='hidden lg:block'
-                >
-                  -
-                </Code>
-                <Code variant='solid' color='pink' highContrast>
-                  <a
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    href={`https://app.ens.domains/name/brently.eth`}
+            <Tabs.Content value='following' className='space-y-6 md:space-y-3'>
+              <Flex className='max-h-10 flex-col space-y-2 md:space-y-0 md:flex-row'>
+                <Flex>
+                  <Code color='pink' mx='1'>
+                    {humanReadableTimestamp('2021-11-02T11:19:15+00:00')}
+                  </Code>
+                  <Code variant='ghost' color='orange'>
+                    :
+                  </Code>
+                  <Code
+                    variant='solid'
+                    color='pink'
+                    mx='1'
+                    highContrast
+                    className='md:tracking-normal tracking-widest'
                   >
-                    brantly.eth
-                  </a>
-                </Code>
-                <Code highContrast>
+                    <a
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      href={`https://app.ens.domains/name/brently.eth`}
+                    >
+                      brantly.eth
+                    </a>
+                  </Code>
+                </Flex>
+                <Code mx='1' highContrast>
                   <a
                     target='_blank'
                     rel='noopener noreferrer'
@@ -119,27 +124,31 @@ export default function App() {
               </Flex>
             </Tabs.Content>
             <Tabs.Content value='followers'>
-              <Flex className='space-x-2'>
-                <Code color='pink' className='hidden lg:block'>
-                  {humanReadableTimestamp('2023-11-02T11:19:15+00:00')}
-                </Code>
-                <Code
-                  variant='ghost'
-                  color='orange'
-                  className='hidden lg:block'
-                >
-                  -
-                </Code>
-                <Code variant='soft' color='teal' highContrast>
-                  <a
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    href={`https://app.ens.domains/name/zachxbt.eth`}
+              <Flex className='max-h-10 flex-col space-y-2 md:space-y-0 md:flex-row'>
+                <Flex>
+                  <Code color='pink' mx='1'>
+                    {humanReadableTimestamp('2023-11-02T11:19:15+00:00')}
+                  </Code>
+                  <Code variant='ghost' color='orange'>
+                    :
+                  </Code>
+                  <Code
+                    mx='1'
+                    variant='soft'
+                    color='teal'
+                    highContrast
+                    className='md:tracking-normal tracking-widest'
                   >
-                    zachxbt.eth
-                  </a>
-                </Code>
-                <Code color='iris'>
+                    <a
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      href={`https://app.ens.domains/name/zachxbt.eth`}
+                    >
+                      zachxbt.eth
+                    </a>
+                  </Code>
+                </Flex>
+                <Code mx='1' color='iris'>
                   <a
                     target='_blank'
                     rel='noopener noreferrer'
@@ -153,6 +162,7 @@ export default function App() {
           </Box>
         </Tabs.Root>
       </Box>
+      <Footer />
     </Flex>
   )
 }
