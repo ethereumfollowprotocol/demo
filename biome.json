@@ -11,7 +11,7 @@
     "ignoreUnknown": true
   },
   "organizeImports": {
-    "enabled": true
+    "enabled": false
   },
   "formatter": {
     "enabled": true,
@@ -27,11 +27,11 @@
       "all": true,
       "style": {
         "useBlockStatements": "off",
-        "useSelfClosingElements": "off"
+        "useSelfClosingElements": "off",
+        "noUnusedTemplateLiteral": "off"
       },
-      "suspicious": {
-        "noExplicitAny": "off"
-      },
+      "nursery": { "noUnusedImports": "off" },
+      "suspicious": { "noExplicitAny": "off" },
       "correctness": { "noUndeclaredVariables": "off" }
     }
   },

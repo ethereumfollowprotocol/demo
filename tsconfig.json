@@ -18,7 +18,10 @@
     "strict": true,
     "allowJs": true,
     "checkJs": true,
-    "types": ["node"],
+    "types": ["node", 
+  //
+  // "bun-types"
+  ],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -30,7 +33,7 @@
     },
     // TODO: set to true
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
   },
   "include": ["src"],
   "files": [
