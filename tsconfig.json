@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "useDefineForClassFields": true,
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    "allowImportingTsExtensions": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "allowJs": true,
+    "checkJs": true,
+    "types": ["node"],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "paths": {
+      "#/*": ["./src/*"]
+    },
+    // TODO: set to true
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["src"],
+  "files": [
+    "reset.d.ts",
+    "biome.json",
+    "vite.config.ts",
+    "environment.d.ts",
+    "tailwind.config.ts",
+    "postcss.config.cjs"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
