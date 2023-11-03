@@ -18,10 +18,7 @@
     "strict": true,
     "allowJs": true,
     "checkJs": true,
-    "types": ["node", 
-  //
-  // "bun-types"
-  ],
+    "types": ["node"],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -37,7 +34,6 @@
   },
   "include": ["src"],
   "files": [
-    "reset.d.ts",
     "biome.json",
     "vite.config.ts",
     "environment.d.ts",

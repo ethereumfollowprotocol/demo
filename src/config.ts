@@ -1,6 +1,6 @@
 import { http, fallback } from 'viem'
-import { mainnet } from 'wagmi/chains'
-import { createConfig, createStorage } from 'wagmi'
+import { mainnet } from '@wagmi/core/chains'
+import { createConfig, createStorage } from '@wagmi/core'
 
 import { env, runtime } from '#/utilities.ts'
 
@@ -13,7 +13,7 @@ export const config = createConfig({
       http(`https://eth.llamarpc.com/rpc/${env('LLAMAFOLIO_ID')}`)
     ])
   },
-  storage: ['node', 'bun'].includes(runtime)
+  storage: ['node', 'bun'].includes(runtime())
     ? undefined
     : createStorage({ storage: window.localStorage })
 })

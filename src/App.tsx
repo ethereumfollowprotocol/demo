@@ -1,26 +1,41 @@
-import {
-  Box,
-  Flex,
-  Text,
-  Code,
-  Tabs,
-  Avatar,
-  Separator
-} from '@radix-ui/themes'
+import { Box, Flex, Text, Code, Tabs, Avatar, Separator } from '@radix-ui/themes'
+
 import { Header } from '#/components/header.tsx'
 import { Footer } from '#/components/footer.tsx'
+import { useQuery } from '@tanstack/react-query'
 import { useEnsProfile } from '#/hooks/use-ens-profile.ts'
+import { fetchEfpUserFollowers, fetchEfpUserFollowing } from '#/fetchers'
 import { PLACEHOLDER_AVATAR, humanReadableTimestamp } from '#/utilities.ts'
+
+/**
+ * Still WIP
+ */
 
 // Vitalik's wallet address
 const WALLET_ADDRESS = '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
 
 export default function App() {
+  const { data: ensData, error: ensError, status: ensStatus } = useEnsProfile(WALLET_ADDRESS)
+
   const {
-    data: ensData,
-    error: ensError,
-    status: ensStatus
-  } = useEnsProfile(WALLET_ADDRESS)
+    data: followersData,
+    error: followersError,
+    status: followersStatus
+  } = useQuery({
+    queryKey: ['efp-followers', WALLET_ADDRESS],
+    queryFn: () => fetchEfpUserFollowers(WALLET_ADDRESS),
+    enabled: false // TODO: enable when ready
+  })
+
+  const {
+    data: followingData,
+    error: followingError,
+    status: followingStatus
+  } = useQuery({
+    queryKey: ['efp-following', WALLET_ADDRESS],
+    queryFn: () => fetchEfpUserFollowing(WALLET_ADDRESS),
+    enabled: false // TODO: enable when ready
+  })
 
   return (
     <Flex className='font-serif'>
@@ -35,14 +50,7 @@ export default function App() {
             fallback={'V'}
           />
           <Flex direction='column' className='space-y-2'>
-            <Text
-              my='3'
-              size='7'
-              asChild
-              align='left'
-              weight='bold'
-              className='hover:text-sky-600'
-            >
+            <Text my='3' size='7' asChild align='left' weight='bold' className='hover:text-sky-600'>
               <a
                 target='_blank'
                 rel='noopener noreferrer'
@@ -58,13 +66,7 @@ export default function App() {
                 <Text>Followers</Text>
               </Flex>
               <Separator my='2' size='4' />
-              <Flex
-                gap='3'
-                align='center'
-                direction='row'
-                justify='between'
-                className='text-left'
-              >
+              <Flex gap='3' align='center' direction='row' justify='between' className='text-left'>
                 <Text weight='bold' size='6' align='left' className='w-full'>
                   69
                 </Text>

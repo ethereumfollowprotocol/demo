@@ -7,9 +7,5 @@ export default defineConfig({
   server: {
     port: Number(process.env.PORT || 3_034)
   },
-  build: {
-    target: 'ESNext',
-    emptyOutDir: true
-  },
   plugins: [million.vite({ auto: true }), react(), tsconfigPaths()]
 })
