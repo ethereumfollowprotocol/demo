@@ -38,5 +38,8 @@
   "files.exclude": {
     ".eslintcache": true,
     ".prettiercache": true
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
   }
 }

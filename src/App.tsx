@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { Box, Flex, Text, Code, Tabs, Avatar, Separator, Grid, Card } from '@radix-ui/themes'
+import { Box, Flex, Text, Code, Tabs, Avatar, Separator, Grid, Card, Link } from '@radix-ui/themes'
 
 import { Header } from '#/components/header.tsx'
 import { Footer } from '#/components/footer.tsx'
@@ -47,7 +47,11 @@ export default function App() {
               size='9'
               radius='medium'
               variant='solid'
-              src={ensData?.avatar || 'https://metadata.ens.domains/mainnet/avatar/vitalik.eth' || PLACEHOLDER_AVATAR}
+              src={
+                ensData?.avatar ||
+                'https://metadata.ens.domains/mainnet/avatar/vitalik.eth' ||
+                PLACEHOLDER_AVATAR
+              }
               fallback='V'
             />
           </Box>
@@ -67,7 +71,9 @@ export default function App() {
         <Flex direction='column' gap='5' mx='auto' width='100%' height='1'>
           <Box>
             <Flex className='space-x-6' align='center' justify='center'>
-              <Avatar src='/logo.png' fallback='/logo.png' size='3' />
+              <Link target='_blank' rel='noopener noreferrer' href='https://x.com/ethfollowpr'>
+                <Avatar src='/logo.png' fallback='/logo.png' size='3' />
+              </Link>
               <Flex className='sm:flex-row flex-col space-x-3' align='center'>
                 <Text weight='bold' size='6' align='left'>
                   69
