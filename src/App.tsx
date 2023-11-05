@@ -1,11 +1,11 @@
-import { Box, Flex, Text, Code, Tabs, Avatar, Separator } from '@radix-ui/themes'
+import { useQuery } from '@tanstack/react-query'
+import { Box, Flex, Text, Code, Tabs, Avatar, Separator, Grid, Card } from '@radix-ui/themes'
 
 import { Header } from '#/components/header.tsx'
 import { Footer } from '#/components/footer.tsx'
-import { useQuery } from '@tanstack/react-query'
+import { PLACEHOLDER_AVATAR } from '#/utilities.ts'
 import { useEnsProfile } from '#/hooks/use-ens-profile.ts'
 import { fetchEfpUserFollowers, fetchEfpUserFollowing } from '#/fetchers'
-import { PLACEHOLDER_AVATAR, humanReadableTimestamp } from '#/utilities.ts'
 
 /**
  * Still WIP
@@ -40,130 +40,127 @@ export default function App() {
   return (
     <Flex className='font-serif'>
       <Header />
-      <Box className='mx-0 mt-2 flex h-full min-h-full w-full flex-col items-center justify-center'>
-        <Flex className='space-x-5 mb-12'>
-          <Avatar
-            size='9'
-            radius='small'
-            variant='solid'
-            src={ensData?.avatar || PLACEHOLDER_AVATAR}
-            fallback={'V'}
-          />
-          <Flex direction='column' className='space-y-2'>
+      <Grid gapY='3' rows='2' className='w-full sm:max-w-lg font-serif' mx='auto'>
+        <Flex direction='column' gap='3'>
+          <Box>
+            <Avatar
+              size='9'
+              radius='medium'
+              variant='solid'
+              src={ensData?.avatar || 'https://metadata.ens.domains/mainnet/avatar/vitalik.eth' || PLACEHOLDER_AVATAR}
+              fallback='V'
+            />
+          </Box>
+          <Box>
             <Text my='3' size='7' asChild align='left' weight='bold' className='hover:text-sky-600'>
               <a
                 target='_blank'
                 rel='noopener noreferrer'
-                href='https://app.ens.domains/name/vitalik.eth'
+                href={`https://app.ens.domains/name/${ensData?.name}`}
               >
                 {ensData?.name}
               </a>
             </Text>
-            <Box mb='6'>
-              <Flex gap='2' align='center' justify='center'>
-                <Text>Following</Text>
-                <Separator orientation='vertical' mx='1' />
-                <Text>Followers</Text>
-              </Flex>
-              <Separator my='2' size='4' />
-              <Flex gap='3' align='center' direction='row' justify='between' className='text-left'>
-                <Text weight='bold' size='6' align='left' className='w-full'>
-                  69
-                </Text>
-                <Separator orientation='vertical' mx='1' />
-                <Text weight='bold' size='6' align='left' className='w-full'>
-                  420
-                </Text>
-              </Flex>
-            </Box>
-          </Flex>
+          </Box>
         </Flex>
 
-        <Tabs.Root defaultValue='following' className='overflow-x-auto'>
-          <Tabs.List className='mx-auto justify-center'>
-            <Tabs.Trigger value='following'>
-              <Text size='4'>Following</Text>
-            </Tabs.Trigger>
-            <Tabs.Trigger value='followers'>
-              <Text size='4'>Followers</Text>
-            </Tabs.Trigger>
-          </Tabs.List>
-          <Box py='3'>
-            <Tabs.Content value='following' className='space-y-6 md:space-y-3'>
-              <Flex className='max-h-10 flex-col space-y-2 md:space-y-0 md:flex-row'>
-                <Flex>
-                  <Code color='pink' mx='1'>
-                    {humanReadableTimestamp('2021-11-02T11:19:15+00:00')}
-                  </Code>
-                  <Code variant='ghost' color='orange'>
-                    :
-                  </Code>
-                  <Code
-                    variant='solid'
-                    color='pink'
-                    mx='1'
-                    highContrast
-                    className='md:tracking-normal tracking-widest'
-                  >
-                    <a
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      href={`https://app.ens.domains/name/brently.eth`}
-                    >
-                      brantly.eth
-                    </a>
-                  </Code>
-                </Flex>
-                <Code mx='1' highContrast>
-                  <a
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    href={`https://etherscan.io/address/0x983110309620D911731Ac0932219af06091b6744`}
-                  >
-                    0x983110309620D911731Ac0932219af06091b6744
-                  </a>
-                </Code>
+        <Flex direction='column' gap='5' mx='auto' width='100%' height='1'>
+          <Box>
+            <Flex className='space-x-6' align='center' justify='center'>
+              <Avatar src='/logo.png' fallback='/logo.png' size='3' />
+              <Flex className='sm:flex-row flex-col space-x-3' align='center'>
+                <Text weight='bold' size='6' align='left'>
+                  69
+                </Text>
+                <Text size='5'>Followers</Text>
               </Flex>
-            </Tabs.Content>
-            <Tabs.Content value='followers'>
-              <Flex className='max-h-10 flex-col space-y-2 md:space-y-0 md:flex-row'>
-                <Flex>
-                  <Code color='pink' mx='1'>
-                    {humanReadableTimestamp('2023-11-02T11:19:15+00:00')}
-                  </Code>
-                  <Code variant='ghost' color='orange'>
-                    :
-                  </Code>
-                  <Code
-                    mx='1'
-                    variant='soft'
-                    color='teal'
-                    highContrast
-                    className='md:tracking-normal tracking-widest'
-                  >
-                    <a
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      href={`https://app.ens.domains/name/zachxbt.eth`}
-                    >
-                      zachxbt.eth
-                    </a>
-                  </Code>
-                </Flex>
-                <Code mx='1' color='iris'>
-                  <a
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    href={`https://etherscan.io/address/0x9D727911B54C455B0071A7B682FcF4Bc444B5596`}
-                  >
-                    0x9D727911B54C455B0071A7B682FcF4Bc444B5596
-                  </a>
-                </Code>
+              <Separator orientation='vertical' mx='1' />
+              <Flex className='sm:flex-row flex-col space-x-3' align='center'>
+                <Text weight='bold' size='6' align='left'>
+                  420
+                </Text>
+                <Text size='5'>Following</Text>
               </Flex>
-            </Tabs.Content>
+            </Flex>
           </Box>
-        </Tabs.Root>
-      </Box>
+          <Box grow='1' px='2'>
+            <Tabs.Root defaultValue='followers'>
+              <Tabs.List size='2' className='mx-auto justify-center'>
+                <Tabs.Trigger value='followers'>
+                  <Text size='4'>Followers</Text>
+                </Tabs.Trigger>
+                <Tabs.Trigger value='following'>
+                  <Text size='4'>Following</Text>
+                </Tabs.Trigger>
+              </Tabs.List>
+              <Box py='3'>
+                <Tabs.Content value='followers'>
+                  <Flex direction='column' gap='3'>
+                    <Card>
+                      <Flex gap='5' align='center'>
+                        <Avatar
+                          size='4'
+                          src='https://metadata.ens.domains/mainnet/avatar/brantly.eth'
+                          radius='full'
+                          fallback='T'
+                        />
+                        <Box>
+                          <Text as='div' size='4' weight='bold' className='hover:text-sky-600'>
+                            <a
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              href={`https://app.ens.domains/name/brantly.eth`}
+                            >
+                              brantly.eth
+                            </a>
+                          </Text>
+                          <Code size='1' variant='soft'>
+                            <a
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              href={`https://etherscan.io/address/0x983110309620D911731Ac0932219af06091b6744`}
+                            >
+                              0x983110309620D911731Ac0932219af06091b6744
+                            </a>
+                          </Code>
+                        </Box>
+                      </Flex>
+                    </Card>
+                  </Flex>
+                </Tabs.Content>
+                <Tabs.Content value='following' className='space-y-6 md:space-y-3'>
+                  <Flex direction='column' gap='5' px='2'>
+                    <Flex justify='start' align='center' gap='4'>
+                      <Avatar
+                        size='4'
+                        radius='full'
+                        src='https://metadata.ens.domains/mainnet/avatar/cory.eth'
+                        fallback='B'
+                      />
+                      <Code
+                        mx='1'
+                        variant='ghost'
+                        color='teal'
+                        highContrast
+                        className='md:tracking-normal tracking-widest'
+                        size='5'
+                      >
+                        <a
+                          target='_blank'
+                          rel='noopener noreferrer'
+                          href={`https://app.ens.domains/name/cory.eth`}
+                        >
+                          cory.eth
+                        </a>
+                      </Code>
+                    </Flex>
+                  </Flex>
+                </Tabs.Content>
+              </Box>
+            </Tabs.Root>
+          </Box>
+        </Flex>
+      </Grid>
       <Footer />
     </Flex>
   )
