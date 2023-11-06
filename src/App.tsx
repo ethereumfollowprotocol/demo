@@ -80,7 +80,7 @@ export default function App() {
                 rel='noopener noreferrer'
                 href={`https://app.ens.domains/name/${ensData?.name}`}
               >
-                {ensData?.name}
+                vitalik.eth
               </a>
             </Text>
           </Box>
