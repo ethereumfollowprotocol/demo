@@ -38,14 +38,14 @@ export default function App() {
   })
 
   return (
-    <Flex className='font-serif'>
+    <Flex>
       <Header />
       <Grid gapY='3' rows='2' className='w-full sm:max-w-lg font-serif' mx='auto'>
         <Flex direction='column' gap='3'>
           <Box>
             <Avatar
-              size='9'
-              radius='medium'
+              size='8'
+              radius='full'
               variant='solid'
               src={
                 ensData?.avatar ||
@@ -72,95 +72,89 @@ export default function App() {
           <Box>
             <Flex className='space-x-6' align='center' justify='center'>
               <Link target='_blank' rel='noopener noreferrer' href='https://x.com/ethfollowpr'>
-                <Avatar src='/logo.png' fallback='/logo.png' size='3' />
+                <Avatar src='/logo.png' fallback='/logo.png' size='2' />
               </Link>
               <Flex className='sm:flex-row flex-col space-x-3' align='center'>
-                <Text weight='bold' size='6' align='left'>
+                <Text weight='bold' size='4' align='left'>
                   69
                 </Text>
-                <Text size='5'>Followers</Text>
+                <Text size='2'>Followers</Text>
               </Flex>
               <Separator orientation='vertical' mx='1' />
               <Flex className='sm:flex-row flex-col space-x-3' align='center'>
-                <Text weight='bold' size='6' align='left'>
+                <Text weight='bold' size='4' align='left'>
                   420
                 </Text>
-                <Text size='5'>Following</Text>
+                <Text size='2'>Following</Text>
               </Flex>
             </Flex>
           </Box>
-          <Box grow='1' px='2'>
+          <Box grow='1' px='6'>
             <Tabs.Root defaultValue='followers'>
-              <Tabs.List size='2' className='mx-auto justify-center'>
-                <Tabs.Trigger value='followers'>
-                  <Text size='4'>Followers</Text>
+              <Tabs.List size='1' className='mx-auto justify-center shadow-none gap-x-32'>
+                <Tabs.Trigger
+                  value='followers'
+                  className='before:bg-transparent data-[state=active]:bg-zinc-300 hover:bg-zinc-300 hover:rounded-full rounded-full p-1.5 data-[state=active]:font-extrabold'
+                >
+                  <Text size='3' weight='bold'>
+                    Followers
+                  </Text>
                 </Tabs.Trigger>
-                <Tabs.Trigger value='following'>
-                  <Text size='4'>Following</Text>
+                <Tabs.Trigger
+                  value='following'
+                  className='before:bg-transparent data-[state=active]:bg-zinc-300 hover:bg-zinc-300 hover:rounded-full rounded-full p-1.5 data-[state=active]:font-extrabold'
+                >
+                  <Text size='3' weight='bold'>
+                    Following
+                  </Text>
                 </Tabs.Trigger>
               </Tabs.List>
-              <Box py='3'>
-                <Tabs.Content value='followers'>
-                  <Flex direction='column' gap='3'>
-                    <Card>
-                      <Flex gap='5' align='center'>
-                        <Avatar
-                          size='4'
-                          src='https://metadata.ens.domains/mainnet/avatar/brantly.eth'
-                          radius='full'
-                          fallback='T'
-                        />
-                        <Box>
-                          <Text as='div' size='4' weight='bold' className='hover:text-sky-600'>
-                            <a
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              href={`https://app.ens.domains/name/brantly.eth`}
-                            >
-                              brantly.eth
-                            </a>
-                          </Text>
-                          <Code size='1' variant='soft'>
-                            <a
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              href={`https://etherscan.io/address/0x983110309620D911731Ac0932219af06091b6744`}
-                            >
-                              0x983110309620D911731Ac0932219af06091b6744
-                            </a>
-                          </Code>
-                        </Box>
-                      </Flex>
-                    </Card>
-                  </Flex>
-                </Tabs.Content>
-                <Tabs.Content value='following' className='space-y-6 md:space-y-3'>
-                  <Flex direction='column' gap='5' px='2'>
-                    <Flex justify='start' align='center' gap='4'>
+              <Box py='5' px='2' mx='auto'>
+                <Tabs.Content value='followers' className='space-y-3'>
+                  <Card variant='ghost' className='sm:pl-12'>
+                    <Flex gap='4' align='center'>
                       <Avatar
-                        size='4'
+                        size='3'
+                        src='https://metadata.ens.domains/mainnet/avatar/brantly.eth'
                         radius='full'
-                        src='https://metadata.ens.domains/mainnet/avatar/cory.eth'
-                        fallback='B'
+                        fallback='T'
                       />
-                      <Code
-                        mx='1'
-                        variant='ghost'
-                        color='teal'
-                        highContrast
-                        className='md:tracking-normal tracking-widest'
-                        size='5'
-                      >
-                        <a
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          href={`https://app.ens.domains/name/cory.eth`}
-                        >
-                          cory.eth
-                        </a>
-                      </Code>
+                      <Box>
+                        <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
+                          <a
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href={`https://app.ens.domains/name/brantly.eth`}
+                          >
+                            brantly.eth
+                          </a>
+                        </Text>
+                      </Box>
                     </Flex>
-                  </Flex>
+                  </Card>
+                </Tabs.Content>
+                <Tabs.Content value='following' className='space-y-3'>
+                  <Card variant='ghost' className='sm:pl-12'>
+                    <Flex gap='4' align='center'>
+                      <Avatar
+                        size='3'
+                        src='https://metadata.ens.domains/mainnet/avatar/cory.eth'
+                        radius='full'
+                        fallback='T'
+                      />
+                      <Box>
+                        <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
+                          <a
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            href={`https://app.ens.domains/name/cory.eth`}
+                          >
+                            cory.eth
+                          </a>
+                        </Text>
+                      </Box>
+                    </Flex>
+                  </Card>
                 </Tabs.Content>
               </Box>
             </Tabs.Root>

@@ -10,7 +10,7 @@ export function Footer() {
         className='rounded-full bg-transparent'
       >
         <svg
-          className='w-8 h-8 text-gray-300 hover:text-gray-200'
+          className='w-8 h-8 text-gray-800 hover:text-gray-900'
           viewBox='0 0 15 15'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
@@ -31,7 +31,7 @@ export function Footer() {
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          className='w-8 h-8 text-gray-300 hover:text-gray-200'
+          className='w-8 h-8 text-gray-800 hover:text-gray-900'
           viewBox='0 0 448 512'
         >
           <path

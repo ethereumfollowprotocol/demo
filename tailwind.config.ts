@@ -6,13 +6,10 @@ export default {
   darkMode: 'class',
   theme: {
     fontFamily: {
-      serif: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.serif],
-      mono: ['"IBM Plex Mono"', ...defaultTheme.fontFamily.mono]
+      serif: ['Roboto', ...defaultTheme.fontFamily.serif]
     },
     extend: {
-      fontFamily: {
-        mono: ['var(--font-ibm-plex-mono)']
-      }
+      fontFamily: {}
     }
   },
   plugins: []

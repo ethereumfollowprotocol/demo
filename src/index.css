@@ -127,3 +127,8 @@ textarea:not([rows]) {
     scrollbar-gutter: stable;
   }
 }
+
+::selection {
+  background-color: #ff9eb1 !important;
+  color: #f9f9f9;
+}

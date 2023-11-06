@@ -17,7 +17,7 @@ export const queryClient = new QueryClient()
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Theme appearance='dark' scaling='110%'>
+      <Theme appearance='light' scaling='110%'>
         <App />
       </Theme>
       <ReactQueryDevtools initialIsOpen={false} />
