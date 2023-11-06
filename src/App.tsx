@@ -1,5 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
-import { Box, Flex, Text, Code, Tabs, Avatar, Separator, Grid, Card, Link } from '@radix-ui/themes'
+import {
+  Box,
+  Flex,
+  Text,
+  Code,
+  Tabs,
+  Avatar,
+  Separator,
+  Grid,
+  Card,
+  Link,
+  Container
+} from '@radix-ui/themes'
 
 import { Header } from '#/components/header.tsx'
 import { Footer } from '#/components/footer.tsx'
@@ -40,7 +52,13 @@ export default function App() {
   return (
     <Flex>
       <Header />
-      <Grid gapY='3' rows='2' className='w-full sm:max-w-lg font-serif' mx='auto'>
+
+      <Grid
+        gapY='3'
+        rows='2'
+        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl py-7 sm:shadow-xl'
+        mx='auto'
+      >
         <Flex direction='column' gap='3'>
           <Box>
             <Avatar
@@ -111,7 +129,7 @@ export default function App() {
               </Tabs.List>
               <Box py='5' px='2' mx='auto'>
                 <Tabs.Content value='followers' className='space-y-3'>
-                  <Card variant='ghost' className='sm:pl-12'>
+                  <Card variant='ghost' className='sm:pl-5'>
                     <Flex gap='4' align='center'>
                       <Avatar
                         size='3'
@@ -134,7 +152,7 @@ export default function App() {
                   </Card>
                 </Tabs.Content>
                 <Tabs.Content value='following' className='space-y-3'>
-                  <Card variant='ghost' className='sm:pl-12'>
+                  <Card variant='ghost' className='sm:pl-5'>
                     <Flex gap='4' align='center'>
                       <Avatar
                         size='3'
@@ -161,6 +179,7 @@ export default function App() {
           </Box>
         </Flex>
       </Grid>
+
       <Footer />
     </Flex>
   )
