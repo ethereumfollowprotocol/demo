@@ -1,6 +1,6 @@
-import type { Address, GetEnsNameReturnType } from 'viem'
 import { normalize } from 'viem/ens'
 import { useQuery } from '@tanstack/react-query'
+import type { Address, GetEnsNameReturnType } from 'viem'
 import { getEnsAvatar, getEnsName, getPublicClient } from '@wagmi/core'
 
 import { config } from '#/config.ts'

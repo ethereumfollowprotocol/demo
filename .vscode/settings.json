@@ -2,7 +2,6 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.preferences.importModuleSpecifierEnding": "js",
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableCommitSigning": true,
@@ -31,13 +30,7 @@
   "search.exclude": {
     "_": true,
     "public/*.js": true,
-    ".eslintcache": true,
-    ".prettiercache": true,
     "**/node_modules": true
-  },
-  "files.exclude": {
-    ".eslintcache": true,
-    ".prettiercache": true
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
