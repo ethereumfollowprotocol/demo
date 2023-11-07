@@ -21,7 +21,6 @@ export default function App() {
   } = useQuery({
     queryKey: ['efp-followers', WALLET_ADDRESS],
     queryFn: () => fetchEfpUserFollowers(WALLET_ADDRESS),
-    // enabled: false, // TODO: enable when ready
     select: ({ data, error }) => ({
       data: data ? data.filter(Boolean).map(({ actor_address: address }) => address) : [],
       error
@@ -44,7 +43,6 @@ export default function App() {
   } = useQuery({
     queryKey: ['efp-following', WALLET_ADDRESS],
     queryFn: () => fetchEfpUserFollowing(WALLET_ADDRESS),
-    // enabled: false, // TODO: enable when ready
     select: ({ data, error }) => ({
       data: data ? data.filter(Boolean).map(({ target_address: address }) => address) : [],
       error
