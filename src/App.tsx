@@ -60,12 +60,13 @@ export default function App() {
   })
 
   return (
-    <Flex height='100%' pb='5'>
+    <Flex pb='5'>
       <Header />
       <Box
-        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl overflow-auto min-h-screen'
+        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl min-h-screen overflow-auto'
         py='5'
         mx='auto'
+        id='main-content'
       >
         <Flex direction='column' gap='3'>
           <Box>
@@ -78,14 +79,8 @@ export default function App() {
             />
           </Box>
           <Box>
-            <Text my='3' size='7' asChild align='left' weight='bold' className='hover:text-sky-600'>
-              <a
-                target='_blank'
-                rel='noopener noreferrer'
-                href={`https://app.ens.domains/name/${ensData?.name}`}
-              >
-                vitalik.eth
-              </a>
+            <Text my='3' size='7' align='left' weight='bold' className='hover:text-sky-600'>
+              vitalik.eth
             </Text>
           </Box>
         </Flex>
@@ -167,13 +162,7 @@ export default function App() {
                         />
                         <Box>
                           <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
-                            <a
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              href={`https://app.ens.domains/name/${name}`}
-                            >
-                              {name || truncateAddress(address)}
-                            </a>
+                            {name || truncateAddress(address)}
                           </Text>
                         </Box>
                       </Flex>
@@ -215,13 +204,7 @@ export default function App() {
                         />
                         <Box>
                           <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
-                            <a
-                              target='_blank'
-                              rel='noopener noreferrer'
-                              href={`https://app.ens.domains/name/${name}`}
-                            >
-                              {name || truncateAddress(address)}
-                            </a>
+                            {name || truncateAddress(address)}
                           </Text>
                         </Box>
                       </Flex>

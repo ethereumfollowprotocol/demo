@@ -33,6 +33,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
+  <script>
+    window.addEventListener('wheel', event => {
+      const scrollableDiv = document.querySelector('div#main-content')
+      if (!scrollableDiv) return
+      if (event.deltaY > 0) {
+        scrollableDiv.scrollTop += 50
+      } else {
+        scrollableDiv.scrollTop -= 50
+      }
+    })
+    window.addEventListener('keydown', event => {
+      const scrollableDiv = document.querySelector('div#main-content')
+      if (!scrollableDiv) return
+      if (event.key === 'ArrowDown' || event.key === 'PageDown') {
+        scrollableDiv.scrollTop += 50
+      } else if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+        scrollableDiv.scrollTop -= 50
+      } else if (event.key === 'Home') {
+        scrollableDiv.scrollTop = 0
+      } else if (event.key === 'End') {
+        scrollableDiv.scrollTop = scrollableDiv.scrollHeight
+      }
+    })
+  </script>
 </head>
 
 <body class="mx-auto max-w-3xl sm:bg-gray-200">
