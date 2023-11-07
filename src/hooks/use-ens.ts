@@ -1,4 +1,4 @@
-import type { Address } from 'viem'
+import type { Address, GetEnsNameReturnType } from 'viem'
 import { normalize } from 'viem/ens'
 import { useQuery } from '@tanstack/react-query'
 import { getEnsAvatar, getEnsName, getPublicClient } from '@wagmi/core'
@@ -19,18 +19,22 @@ export function useEnsProfile(address: Address) {
   })
 }
 
-/**
- * WIP
- */
-export function useEnsProfiles(addresses: Array<Address>) {
-  return useQuery({
-    queryKey: ['ens', addresses.toString()],
+export function useEnsNames({
+  queryKey,
+  enabled = true,
+  addresses
+}: {
+  queryKey: string
+  enabled?: boolean
+  addresses: Array<Address>
+}) {
+  return useQuery<Array<[Address, GetEnsNameReturnType | undefined]>>({
+    enabled,
+    queryKey: ['ens-names', queryKey, addresses.toString()],
     queryFn: async () => {
       const client = getPublicClient(config)
       const names = await Promise.all(addresses.map(address => client.getEnsName({ address })))
-      const avatars = await Promise.all(
-        names.map(name => (name ? client.getEnsAvatar({ name }) : undefined))
-      )
+      return addresses.map((address, index) => [address, names[index]])
     }
   })
 }

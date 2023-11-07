@@ -1,30 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
-import {
-  Box,
-  Flex,
-  Text,
-  Code,
-  Tabs,
-  Avatar,
-  Separator,
-  Grid,
-  Card,
-  Link,
-  Container
-} from '@radix-ui/themes'
+import { Box, Flex, Text, Tabs, Avatar, Separator, Card, Link } from '@radix-ui/themes'
 
 import { Header } from '#/components/header.tsx'
 import { Footer } from '#/components/footer.tsx'
-import { PLACEHOLDER_AVATAR } from '#/utilities.ts'
-import { useEnsProfile } from '#/hooks/use-ens-profile.ts'
-import { fetchEfpUserFollowers, fetchEfpUserFollowing } from '#/fetchers'
-
-/**
- * Still WIP
- */
+import { truncateAddress } from '#/utilities.ts'
+import { useEnsNames, useEnsProfile } from '#/hooks/use-ens.ts'
+import { fetchEfpUserFollowers, fetchEfpUserFollowing } from '#/fetchers.ts'
 
 // Vitalik's wallet address
-const WALLET_ADDRESS = '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
+const WALLET_ADDRESS = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
 
 export default function App() {
   const { data: ensData, error: ensError, status: ensStatus } = useEnsProfile(WALLET_ADDRESS)
@@ -36,7 +20,20 @@ export default function App() {
   } = useQuery({
     queryKey: ['efp-followers', WALLET_ADDRESS],
     queryFn: () => fetchEfpUserFollowers(WALLET_ADDRESS),
-    enabled: false // TODO: enable when ready
+    // enabled: false, // TODO: enable when ready
+    select: ({ data, error }) => ({
+      data: data ? data.filter(Boolean).map(({ actor_address: address }) => address) : [],
+      error
+    })
+  })
+
+  const followersAddresses = followersData?.data || []
+
+  /* Returns tuple of address & ENS name pairs */
+  const { data: followersProfiles } = useEnsNames({
+    queryKey: 'efp-followers',
+    addresses: followersAddresses,
+    enabled: followersStatus === 'success' && followersAddresses.length > 0
   })
 
   const {
@@ -46,17 +43,28 @@ export default function App() {
   } = useQuery({
     queryKey: ['efp-following', WALLET_ADDRESS],
     queryFn: () => fetchEfpUserFollowing(WALLET_ADDRESS),
-    enabled: false // TODO: enable when ready
+    // enabled: false, // TODO: enable when ready
+    select: ({ data, error }) => ({
+      data: data ? data.filter(Boolean).map(({ target_address: address }) => address) : [],
+      error
+    })
+  })
+
+  const followingAddresses = followingData?.data || []
+
+  /* Returns tuple of address & ENS name pairs */
+  const { data: followingProfiles } = useEnsNames({
+    queryKey: 'efp-following',
+    addresses: followingAddresses,
+    enabled: followingStatus === 'success' && followingAddresses.length > 0
   })
 
   return (
-    <Flex>
+    <Flex height='100%' pb='5'>
       <Header />
-
-      <Grid
-        gapY='3'
-        rows='2'
-        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl py-7 sm:shadow-xl'
+      <Box
+        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl overflow-auto min-h-screen'
+        py='5'
         mx='auto'
       >
         <Flex direction='column' gap='3'>
@@ -65,11 +73,7 @@ export default function App() {
               size='8'
               radius='full'
               variant='solid'
-              src={
-                ensData?.avatar ||
-                'https://metadata.ens.domains/mainnet/avatar/vitalik.eth' ||
-                PLACEHOLDER_AVATAR
-              }
+              src={ensData?.avatar || 'https://metadata.ens.domains/mainnet/avatar/vitalik.eth'}
               fallback='V'
             />
           </Box>
@@ -94,14 +98,14 @@ export default function App() {
               </Link>
               <Flex className='sm:flex-row flex-col space-x-3' align='center'>
                 <Text weight='bold' size='4' align='left'>
-                  69
+                  {followersAddresses.length}
                 </Text>
                 <Text size='2'>Followers</Text>
               </Flex>
               <Separator orientation='vertical' mx='1' />
               <Flex className='sm:flex-row flex-col space-x-3' align='center'>
                 <Text weight='bold' size='4' align='left'>
-                  420
+                  {followingAddresses.length}
                 </Text>
                 <Text size='2'>Following</Text>
               </Flex>
@@ -127,59 +131,108 @@ export default function App() {
                   </Text>
                 </Tabs.Trigger>
               </Tabs.List>
-              <Box py='5' px='2' mx='auto'>
-                <Tabs.Content value='followers' className='space-y-3'>
-                  <Card variant='ghost' className='sm:pl-5'>
-                    <Flex gap='4' align='center'>
-                      <Avatar
-                        size='3'
-                        src='https://metadata.ens.domains/mainnet/avatar/brantly.eth'
-                        radius='full'
-                        fallback='T'
-                      />
-                      <Box>
-                        <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
-                          <a
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            href={`https://app.ens.domains/name/brantly.eth`}
-                          >
-                            brantly.eth
-                          </a>
-                        </Text>
-                      </Box>
-                    </Flex>
-                  </Card>
+              <Box py='5' px='2' mx='auto' height='auto'>
+                <Tabs.Content value='followers' className='h-auto'>
+                  {followersProfiles?.map(([address, name]) => (
+                    <Card variant='ghost' className='sm:pl-5' key={address}>
+                      <Flex gap='4' align='center'>
+                        <Avatar
+                          size='3'
+                          src={`https://metadata.ens.domains/mainnet/avatar/${name}`}
+                          radius='full'
+                          fallback={
+                            <svg
+                              width='50'
+                              height='50'
+                              viewBox='0 0 50 50'
+                              fill='none'
+                              xmlns='http://www.w3.org/2000/svg'
+                            >
+                              <circle cx='25' cy='25' r='25' fill='url(#paint0_linear_999_2222)' />
+                              <defs>
+                                <linearGradient
+                                  id='paint0_linear_999_2222'
+                                  x1='25'
+                                  y1='0'
+                                  x2='25'
+                                  y2='50'
+                                  gradientUnits='userSpaceOnUse'
+                                >
+                                  <stop stopColor='#FEF305' />
+                                  <stop offset='1' stopColor='#FF79C9' />
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                          }
+                        />
+                        <Box>
+                          <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
+                            <a
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              href={`https://app.ens.domains/name/${name}`}
+                            >
+                              {name || truncateAddress(address)}
+                            </a>
+                          </Text>
+                        </Box>
+                      </Flex>
+                    </Card>
+                  ))}
                 </Tabs.Content>
-                <Tabs.Content value='following' className='space-y-3'>
-                  <Card variant='ghost' className='sm:pl-5'>
-                    <Flex gap='4' align='center'>
-                      <Avatar
-                        size='3'
-                        src='https://metadata.ens.domains/mainnet/avatar/cory.eth'
-                        radius='full'
-                        fallback='T'
-                      />
-                      <Box>
-                        <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
-                          <a
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            href={`https://app.ens.domains/name/cory.eth`}
-                          >
-                            cory.eth
-                          </a>
-                        </Text>
-                      </Box>
-                    </Flex>
-                  </Card>
+                <Tabs.Content value='following' className=''>
+                  {followingProfiles?.map(([address, name]) => (
+                    <Card variant='ghost' className='sm:pl-5' key={address}>
+                      <Flex gap='4' align='center'>
+                        <Avatar
+                          size='3'
+                          src={`https://metadata.ens.domains/mainnet/avatar/${name}`}
+                          radius='full'
+                          fallback={
+                            <svg
+                              width='50'
+                              height='50'
+                              viewBox='0 0 50 50'
+                              fill='none'
+                              xmlns='http://www.w3.org/2000/svg'
+                            >
+                              <circle cx='25' cy='25' r='25' fill='url(#paint0_linear_999_2222)' />
+                              <defs>
+                                <linearGradient
+                                  id='paint0_linear_999_2222'
+                                  x1='25'
+                                  y1='0'
+                                  x2='25'
+                                  y2='50'
+                                  gradientUnits='userSpaceOnUse'
+                                >
+                                  <stop stopColor='#FEF305' />
+                                  <stop offset='1' stopColor='#FF79C9' />
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                          }
+                        />
+                        <Box>
+                          <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
+                            <a
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              href={`https://app.ens.domains/name/${name}`}
+                            >
+                              {name || truncateAddress(address)}
+                            </a>
+                          </Text>
+                        </Box>
+                      </Flex>
+                    </Card>
+                  ))}
                 </Tabs.Content>
               </Box>
             </Tabs.Root>
           </Box>
         </Flex>
-      </Grid>
-
+      </Box>
       <Footer />
     </Flex>
   )

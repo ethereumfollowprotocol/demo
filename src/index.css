@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .radix-theme {
-  --default-font-family: 'Inter', sans-serif;
+  --default-font-family: 'Roboto', sans-serif;
 }
 
 /* Box sizing rules */
