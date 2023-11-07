@@ -30,7 +30,7 @@ export function useEnsNames({
 }) {
   return useQuery<Array<[Address, GetEnsNameReturnType | undefined]>>({
     enabled,
-    queryKey: ['ens-names', queryKey, addresses.toString()],
+    queryKey: ['ens-names', queryKey],
     queryFn: async () => {
       const client = getPublicClient(config)
       const names = await Promise.all(addresses.map(address => client.getEnsName({ address })))
