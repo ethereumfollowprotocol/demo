@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { Box, Flex, Text, Tabs, Avatar, Separator, Card, Link } from '@radix-ui/themes'
+import { Box, Flex, Text, Tabs, Avatar, Separator, Card, Link, Container } from '@radix-ui/themes'
 
 import { Header } from '#/components/header.tsx'
 import { Footer } from '#/components/footer.tsx'
 import { truncateAddress } from '#/utilities.ts'
+import { Placeholder } from '#/components/placeholder.tsx'
 import { useEnsNames, useEnsProfile } from '#/hooks/use-ens.ts'
 import { fetchEfpUserFollowers, fetchEfpUserFollowing } from '#/fetchers.ts'
 
@@ -62,10 +63,11 @@ export default function App() {
   return (
     <Flex pb='5'>
       <Header />
-      <Box
-        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl min-h-screen overflow-auto'
-        py='5'
+      <Container
+        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl'
+        pt='5'
         mx='auto'
+        height='max-content'
         id='main-content'
       >
         <Flex direction='column' gap='3'>
@@ -75,7 +77,7 @@ export default function App() {
               radius='full'
               variant='solid'
               src={ensData?.avatar || 'https://metadata.ens.domains/mainnet/avatar/vitalik.eth'}
-              fallback='V'
+              fallback={<Placeholder />}
             />
           </Box>
           <Box>
@@ -85,7 +87,7 @@ export default function App() {
           </Box>
         </Flex>
 
-        <Flex direction='column' gap='5' mx='auto' width='100%' height='1'>
+        <Flex direction='column' gap='5' mx='auto' width='100%'>
           <Box>
             <Flex className='space-x-6' align='center' justify='center'>
               <Link target='_blank' rel='noopener noreferrer' href='https://x.com/ethfollowpr'>
@@ -135,30 +137,7 @@ export default function App() {
                           size='3'
                           src={`https://metadata.ens.domains/mainnet/avatar/${name}`}
                           radius='full'
-                          fallback={
-                            <svg
-                              width='50'
-                              height='50'
-                              viewBox='0 0 50 50'
-                              fill='none'
-                              xmlns='http://www.w3.org/2000/svg'
-                            >
-                              <circle cx='25' cy='25' r='25' fill='url(#paint0_linear_999_2222)' />
-                              <defs>
-                                <linearGradient
-                                  id='paint0_linear_999_2222'
-                                  x1='25'
-                                  y1='0'
-                                  x2='25'
-                                  y2='50'
-                                  gradientUnits='userSpaceOnUse'
-                                >
-                                  <stop stopColor='#FEF305' />
-                                  <stop offset='1' stopColor='#FF79C9' />
-                                </linearGradient>
-                              </defs>
-                            </svg>
-                          }
+                          fallback={<Placeholder />}
                         />
                         <Box>
                           <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
@@ -169,7 +148,7 @@ export default function App() {
                     </Card>
                   ))}
                 </Tabs.Content>
-                <Tabs.Content value='following' className=''>
+                <Tabs.Content value='following'>
                   {followingProfiles?.map(([address, name]) => (
                     <Card variant='ghost' className='sm:pl-5' key={address}>
                       <Flex gap='4' align='center'>
@@ -177,30 +156,7 @@ export default function App() {
                           size='3'
                           src={`https://metadata.ens.domains/mainnet/avatar/${name}`}
                           radius='full'
-                          fallback={
-                            <svg
-                              width='50'
-                              height='50'
-                              viewBox='0 0 50 50'
-                              fill='none'
-                              xmlns='http://www.w3.org/2000/svg'
-                            >
-                              <circle cx='25' cy='25' r='25' fill='url(#paint0_linear_999_2222)' />
-                              <defs>
-                                <linearGradient
-                                  id='paint0_linear_999_2222'
-                                  x1='25'
-                                  y1='0'
-                                  x2='25'
-                                  y2='50'
-                                  gradientUnits='userSpaceOnUse'
-                                >
-                                  <stop stopColor='#FEF305' />
-                                  <stop offset='1' stopColor='#FF79C9' />
-                                </linearGradient>
-                              </defs>
-                            </svg>
-                          }
+                          fallback={<Placeholder />}
                         />
                         <Box>
                           <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
@@ -215,7 +171,7 @@ export default function App() {
             </Tabs.Root>
           </Box>
         </Flex>
-      </Box>
+      </Container>
       <Footer />
     </Flex>
   )
