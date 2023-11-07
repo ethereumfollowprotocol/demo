@@ -47,7 +47,7 @@ export function Footer() {
           href='https://x.com/ethfollowpr'
           target='_blank'
           rel='noopener noreferrer'
-          className='bg-transparent text-white rounded-md'
+          className='text-white rounded-md'
         >
           DOCS
         </Link>
