@@ -8,8 +8,8 @@ import { Placeholder } from '#/components/placeholder.tsx'
 import { useEnsNames, useEnsProfile } from '#/hooks/use-ens.ts'
 import { fetchEfpUserFollowers, fetchEfpUserFollowing } from '#/fetchers.ts'
 
-// Vitalik's wallet address
-const WALLET_ADDRESS = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'
+// dr3a.eth wallet address
+const WALLET_ADDRESS = '0xeb6b293E9bB1d71240953c8306aD2c8aC523516a'
 
 export default function App() {
   const { data: ensData, error: ensError, status: ensStatus } = useEnsProfile(WALLET_ADDRESS)
@@ -76,13 +76,13 @@ export default function App() {
               size='8'
               radius='full'
               variant='solid'
-              src={ensData?.avatar || 'https://metadata.ens.domains/mainnet/avatar/vitalik.eth'}
+              src={ensData?.avatar || 'https://metadata.ens.domains/mainnet/avatar/dr3a.eth'}
               fallback={<Placeholder />}
             />
           </Box>
           <Box>
             <Text my='3' size='7' align='left' weight='bold' className='hover:text-sky-600'>
-              vitalik.eth
+              dr3a.eth
             </Text>
           </Box>
         </Flex>
