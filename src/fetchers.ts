@@ -1,13 +1,11 @@
 import { isAddress, type Address } from 'viem'
 
-import { env } from '#/utilities.ts'
-
 /**
  * This code is intentionally verbose to make it easier to read and understand.
  */
 
-const API_URL = env('API_URL')
-const API_VERSION = env('API_VERSION')
+const API_URL = import.meta.env.VITE_API_URL
+const API_VERSION = import.meta.env.VITE_API_VERSION
 
 export type EfpResponse<T> = { data?: T; error?: string }
 
@@ -42,7 +40,7 @@ export async function fetchEfpUserStats(address: Address): Promise<EfpResponse<E
   if (!response.ok) {
     throw new Error(`Invalid response for ${address}: ${response.statusText}`)
   }
-  return await response.json()
+  return (await response.json()) as EfpResponse<EfpUserStats>
 }
 
 export async function fetchEfpUserFollowers(
@@ -55,7 +53,7 @@ export async function fetchEfpUserFollowers(
   if (!response.ok) {
     throw new Error(`Error for ${address}: ${response.statusText}`)
   }
-  return await response.json()
+  return (await response.json()) as EfpResponse<Array<EfpUserFollower>>
 }
 
 export async function fetchEfpUserFollowing(
@@ -68,7 +66,7 @@ export async function fetchEfpUserFollowing(
   if (!response.ok) {
     throw new Error(`Error for ${address}: ${response.statusText}`)
   }
-  return await response.json()
+  return (await response.json()) as EfpResponse<Array<EfpUserFollowing>>
 }
 
 export async function fetchEfpUser(address: Address): Promise<EfpResponse<EfpUser>> {
@@ -77,5 +75,5 @@ export async function fetchEfpUser(address: Address): Promise<EfpResponse<EfpUse
   if (!response.ok) {
     throw new Error(`Error for ${address}: ${response.statusText}`)
   }
-  return await response.json()
+  return (await response.json()) as EfpResponse<EfpUser>
 }
