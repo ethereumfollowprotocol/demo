@@ -44,7 +44,7 @@ export function Footer() {
       </div>
       <Button color='gray' size='1' variant='solid' className='text-white bg-gray-800' asChild>
         <Link
-          href='https://x.com/ethfollowpr'
+          href='https://docs.ethfollow.xyz/api'
           target='_blank'
           rel='noopener noreferrer'
           className='text-white rounded-md'
