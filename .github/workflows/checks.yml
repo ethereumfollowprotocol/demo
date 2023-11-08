@@ -21,11 +21,30 @@ jobs:
     timeout-minutes: 3
     runs-on: ['ubuntu-latest']
     steps:
-      - name: 🔑 Checkout
+      - name: 'Checkout'
         uses: actions/checkout@v4.1.1
 
-      - name: 'Install Dependencies'
-        uses: ./.github/actions/setup
+      - name: 'Set up Bun'
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 'latest'
 
-      - name: 'Lint / Build / Test'
-        uses: ./.github/actions/checks
+      - name: 'Install Dependencies'
+        shell: bash
+        run: bun install
+
+      - name: 'Lint'
+        shell: bash
+        run: bun lint
+
+      - name: 'Format'
+        shell: bash
+        run: bun format
+
+      - name: 'Typecheck'
+        shell: bash
+        run: bun typecheck
+
+      - name: 'Build'
+        shell: bash
+        run: bun run build
