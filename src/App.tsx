@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { Box, Flex, Text, Tabs, Avatar, Separator, Card, Link, Container } from '@radix-ui/themes'
 
-import { Header } from '#/components/header.tsx'
 import { Footer } from '#/components/footer.tsx'
 import { truncateAddress } from '#/utilities.ts'
 import { Placeholder } from '#/components/placeholder.tsx'
@@ -60,15 +59,12 @@ export default function App() {
 
   return (
     <Flex pb='5'>
-      <Header />
       <Container
-        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl'
         pt='2'
         mx='auto'
-        height='max-content'
-        id='main-content'
+        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl'
       >
-        <Box width='100%' className='mr-auto text-left' px='3'>
+        <Box width='100%' className='mr-auto text-left ml-8 sm:ml-0' px='3'>
           <Text weight='bold' color='gray' size='2'>
             #303
           </Text>
@@ -78,13 +74,13 @@ export default function App() {
             <Avatar
               size='8'
               radius='full'
-              variant='solid'
+              variant='soft'
               src={ensData?.avatar || 'https://metadata.ens.domains/mainnet/avatar/dr3a.eth'}
               fallback={<Placeholder />}
             />
           </Box>
           <Box>
-            <Text my='3' size='7' align='left' weight='bold' className='hover:text-sky-600'>
+            <Text my='3' size='7' align='left' weight='bold'>
               dr3a.eth
             </Text>
           </Box>
@@ -113,7 +109,10 @@ export default function App() {
           </Box>
           <Box grow='1' px='6'>
             <Tabs.Root defaultValue='followers'>
-              <Tabs.List size='1' className='mx-auto justify-center shadow-none gap-x-32'>
+              <Tabs.List
+                size='1'
+                className='mx-auto justify-center shadow-none sm:gap-x-32 gap-x-36'
+              >
                 <Tabs.Trigger
                   value='followers'
                   className='before:bg-transparent data-[state=active]:bg-zinc-300 hover:bg-zinc-300 hover:rounded-full rounded-full p-1.5 data-[state=active]:font-extrabold'
@@ -143,7 +142,7 @@ export default function App() {
                           fallback={<Placeholder />}
                         />
                         <Box>
-                          <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
+                          <Text as='div' size='3' weight='bold' className='hover:text-pink-300'>
                             {name || truncateAddress(address)}
                           </Text>
                         </Box>
@@ -162,7 +161,7 @@ export default function App() {
                           fallback={<Placeholder />}
                         />
                         <Box>
-                          <Text as='div' size='3' weight='bold' className='hover:text-sky-600'>
+                          <Text as='div' size='3' weight='bold' className='hover:text-pink-400'>
                             {name || truncateAddress(address)}
                           </Text>
                         </Box>
