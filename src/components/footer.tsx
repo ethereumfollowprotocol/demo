@@ -1,4 +1,4 @@
-import { Button, Link, Text } from '@radix-ui/themes'
+import { Button, Link } from '@radix-ui/themes'
 
 export function Footer() {
   return (

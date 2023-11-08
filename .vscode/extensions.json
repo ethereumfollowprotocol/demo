@@ -1,8 +1,7 @@
 {
   "recommendations": [
+    "biomejs.biome",
     "mikestead.dotenv",
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "EditorConfig.EditorConfig",
     "github.vscode-github-actions"
