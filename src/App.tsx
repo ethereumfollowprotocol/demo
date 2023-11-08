@@ -63,11 +63,16 @@ export default function App() {
       <Header />
       <Container
         className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl'
-        pt='5'
+        pt='2'
         mx='auto'
         height='max-content'
         id='main-content'
       >
+        <Box width='100%' className='mr-auto text-left' px='3'>
+          <Text weight='bold' color='gray' size='2'>
+            #303
+          </Text>
+        </Box>
         <Flex direction='column' gap='3'>
           <Box>
             <Avatar

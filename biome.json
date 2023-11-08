@@ -7,7 +7,7 @@
   },
   "files": {
     "include": ["./**/*.ts", "./**/*.js", "./**/*.tsx", "./**/*.d.ts"],
-    "ignore": ["node_modules", "dist"],
+    "ignore": ["node_modules", "dist", "_"],
     "ignoreUnknown": true
   },
   "organizeImports": {
