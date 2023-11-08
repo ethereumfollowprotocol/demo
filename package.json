@@ -15,10 +15,10 @@
     "@radix-ui/themes": "^2.0.0",
     "@tanstack/react-query": "^5.4.3",
     "@tanstack/react-query-devtools": "^5.4.2",
-    "@wagmi/core": "2.0.0-beta.0",
     "million": "^2.6.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "@wagmi/core": "2.0.0-beta.0",
     "viem": "2.0.0-beta.0"
   },
   "devDependencies": {

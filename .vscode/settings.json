@@ -19,7 +19,8 @@
   "[json]": { "editor.defaultFormatter": "biomejs.biome" },
   "[jsonc]": { "editor.defaultFormatter": "biomejs.biome" },
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
+    "biome.json": "jsonc"
   },
   "editor.quickSuggestions": {
     "strings": "on"
