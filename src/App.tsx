@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Box, Flex, Text, Tabs, Avatar, Separator, Card, Link, Container } from '@radix-ui/themes'
 
-import { Footer } from '#/components/footer.tsx'
+import { Header } from '#/components/header.tsx'
 import { truncateAddress } from '#/utilities.ts'
 import { Placeholder } from '#/components/placeholder.tsx'
 import { useEnsNames, useEnsProfile } from '#/hooks/use-ens.ts'
@@ -59,6 +59,7 @@ export default function App() {
 
   return (
     <Flex pb='5'>
+      <Header />
       <Container
         pt='2'
         mx='auto'
@@ -170,7 +171,6 @@ export default function App() {
           </Box>
         </Flex>
       </Container>
-      <Footer />
     </Flex>
   )
 }
