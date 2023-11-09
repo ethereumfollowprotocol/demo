@@ -6,6 +6,10 @@
   --default-font-family: 'Roboto', sans-serif;
 }
 
+button > span {
+  background-color: transparent !important;
+}
+
 /* Box sizing rules */
 *,
 *::before,

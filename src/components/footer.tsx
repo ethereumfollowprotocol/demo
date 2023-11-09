@@ -2,7 +2,7 @@ import { Button, Link } from '@radix-ui/themes'
 
 export function Footer() {
   return (
-    <footer className='flex space-x-3 fixed bottom-0 left-4 right-2 justify-between items-center h-16'>
+    <footer className='flex space-x-3 fixed bottom-0 left-4 right-4 justify-between items-center h-16'>
       <div className='flex space-x-2'>
         <Link
           href='https://github.com/ethereumfollowprotocol/demo'

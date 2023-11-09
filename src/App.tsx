@@ -1,17 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import {
-  Box,
-  Flex,
-  Text,
-  Tabs,
-  Avatar,
-  Separator,
-  Card,
-  Link,
-  Container,
-  HoverCard,
-  Heading
-} from '@radix-ui/themes'
+import { Box, Flex, Text, Tabs, Avatar, Separator, Card, Link, Container } from '@radix-ui/themes'
 
 import { Footer } from '#/components/footer.tsx'
 import { truncateAddress } from '#/utilities.ts'
@@ -76,13 +64,8 @@ export default function App() {
         mx='auto'
         className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl'
       >
-        <Box width='100%' className='mr-auto text-left ml-8 sm:ml-0' px='3'>
-          <Text weight='bold' color='gray' size='2'>
-            #303
-          </Text>
-        </Box>
         <Flex direction='column' gap='3'>
-          <Box>
+          <Box pt='5'>
             <Avatar
               size='8'
               radius='full'
@@ -100,28 +83,32 @@ export default function App() {
 
         <Flex direction='column' gap='5' mx='auto' width='100%'>
           <Box>
-            <Flex className='space-x-6' align='center' justify='center'>
+            <Flex className='space-x-6' align='center' justify='center' pt='5'>
               <Link target='_blank' rel='noopener noreferrer' href='https://x.com/ethfollowpr'>
-                <Avatar src='/logo.png' fallback='/logo.png' size='2' />
+                <Avatar src='/logo.png' fallback='/logo.png' size='3' />
               </Link>
-              <Flex className='sm:flex-row flex-col space-x-3' align='center'>
-                <Text weight='bold' size='4' align='left'>
+              <Flex className='sm:flex-row flex-col space-x-3' align='center' justify='center'>
+                <p className='mx-auto text-center pl-3 sm:pl-0 font-bold text-xl'>
                   {followersAddresses.length}
+                </p>
+                <Text size='2' align='center'>
+                  Followers
                 </Text>
-                <Text size='2'>Followers</Text>
               </Flex>
               <Separator orientation='vertical' mx='1' />
-              <Flex className='sm:flex-row flex-col space-x-3' align='center'>
-                <Text weight='bold' size='4' align='left'>
+              <Flex className='sm:flex-row flex-col space-x-3' align='center' justify='center'>
+                <p className='mx-auto text-center pl-3 sm:pl-0 font-bold text-xl'>
                   {followingAddresses.length}
+                </p>
+                <Text size='2' align='center'>
+                  Following
                 </Text>
-                <Text size='2'>Following</Text>
               </Flex>
             </Flex>
           </Box>
-          <Box grow='1' px='6'>
-            <Tabs.Root defaultValue='followers'>
-              <Tabs.List size='1' className='mx-auto justify-center shadow-none gap-x-32'>
+          <Box grow='1'>
+            <Tabs.Root defaultValue='followers' className='px-3'>
+              <Tabs.List size='1' className='mx-auto justify-center shadow-none gap-x-28'>
                 <Tabs.Trigger
                   value='followers'
                   className='before:bg-transparent data-[state=active]:bg-zinc-300 hover:bg-zinc-300 hover:rounded-full rounded-full p-1.5 data-[state=active]:font-extrabold'
@@ -139,7 +126,7 @@ export default function App() {
                   </Text>
                 </Tabs.Trigger>
               </Tabs.List>
-              <Box py='5' px='2' mx='auto' height='auto'>
+              <Box py='5' px='5' mx='auto' height='auto'>
                 <Tabs.Content value='followers' className='h-auto'>
                   {followersProfiles?.map(([address, name]) => (
                     <Card variant='ghost' className='sm:pl-5' key={address}>
