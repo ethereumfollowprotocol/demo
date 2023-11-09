@@ -121,10 +121,7 @@ export default function App() {
           </Box>
           <Box grow='1' px='6'>
             <Tabs.Root defaultValue='followers'>
-              <Tabs.List
-                size='1'
-                className='mx-auto justify-center shadow-none sm:gap-x-32 gap-x-36'
-              >
+              <Tabs.List size='1' className='mx-auto justify-center shadow-none gap-x-32'>
                 <Tabs.Trigger
                   value='followers'
                   className='before:bg-transparent data-[state=active]:bg-zinc-300 hover:bg-zinc-300 hover:rounded-full rounded-full p-1.5 data-[state=active]:font-extrabold'
@@ -155,15 +152,7 @@ export default function App() {
                         />
                         <Box>
                           <Text as='div' size='3' weight='bold' className='hover:text-pink-300'>
-                            {/* {name || truncateAddress(address)} */}
-                            <HoverCard.Root>
-                              <HoverCard.Trigger>
-                                <Text>{name || truncateAddress(address)}</Text>
-                              </HoverCard.Trigger>
-                              <HoverCard.Content size='1' className='p-2'>
-                                <Text size='1'>{address}</Text>
-                              </HoverCard.Content>
-                            </HoverCard.Root>
+                            {name || truncateAddress(address)}
                           </Text>
                         </Box>
                       </Flex>
