@@ -1,5 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
-import { Box, Flex, Text, Tabs, Avatar, Separator, Card, Link, Container } from '@radix-ui/themes'
+import {
+  Box,
+  Flex,
+  Text,
+  Tabs,
+  Avatar,
+  Separator,
+  Card,
+  Link,
+  Container,
+  HoverCard,
+  Heading
+} from '@radix-ui/themes'
 
 import { Footer } from '#/components/footer.tsx'
 import { truncateAddress } from '#/utilities.ts'
@@ -143,7 +155,15 @@ export default function App() {
                         />
                         <Box>
                           <Text as='div' size='3' weight='bold' className='hover:text-pink-300'>
-                            {name || truncateAddress(address)}
+                            {/* {name || truncateAddress(address)} */}
+                            <HoverCard.Root>
+                              <HoverCard.Trigger>
+                                <Text>{name || truncateAddress(address)}</Text>
+                              </HoverCard.Trigger>
+                              <HoverCard.Content size='1' className='p-2'>
+                                <Text size='1'>{address}</Text>
+                              </HoverCard.Content>
+                            </HoverCard.Root>
                           </Text>
                         </Box>
                       </Flex>
