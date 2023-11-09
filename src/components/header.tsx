@@ -41,7 +41,7 @@ export function Header() {
         </svg>
       </Link>
       <Link
-        href='https://x.com/ethfollowpr'
+        href='https://discord.ethfollow.xyz'
         target='_blank'
         rel='noopener noreferrer'
         className='rounded-full bg-transparent'
