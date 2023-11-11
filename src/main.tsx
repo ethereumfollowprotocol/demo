@@ -20,7 +20,7 @@ ReactDOM.createRoot(root).render(
       <Theme appearance='light' scaling='110%'>
         <App />
       </Theme>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>
 )
