@@ -32,7 +32,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
   },
-  "include": ["src"],
+  "include": ["src", "scripts"],
   "files": [
     "biome.json",
     "reset.d.ts",

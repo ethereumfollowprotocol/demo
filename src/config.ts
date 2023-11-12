@@ -1,6 +1,5 @@
-import { http, fallback } from 'viem'
-import { mainnet } from '@wagmi/core/chains'
-import { createConfig, createStorage } from '@wagmi/core'
+import { mainnet } from 'wagmi/chains'
+import { createConfig, http, fallback, createStorage } from 'wagmi'
 
 export const config = createConfig({
   chains: [mainnet],
