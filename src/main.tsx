@@ -1,4 +1,3 @@
-import 'typed-query-selector'
 import * as React from 'react'
 import '@radix-ui/themes/styles.css'
 import { Theme } from '@radix-ui/themes'
