@@ -18,7 +18,7 @@
     "strict": true,
     "allowJs": true,
     "checkJs": true,
-    "types": ["node", "typed-query-selector/strict"],
+    "types": ["node", "bun","typed-query-selector/strict"],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
