@@ -60,7 +60,7 @@ export function Header() {
 
       <Button color='gray' size='1' variant='solid' className='text-white bg-gray-800' asChild>
         <Link
-          href='https://docs.ethfollow.xyz/api'
+          href='https://docs.ethfollow.xyz/intro'
           target='_blank'
           rel='noopener noreferrer'
           className='text-white rounded-md'
