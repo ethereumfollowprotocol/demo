@@ -6,14 +6,8 @@
   --default-font-family: 'Roboto', sans-serif;
 }
 
-button > span {
-  background-color: transparent !important;
-}
-
 /* Box sizing rules */
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
@@ -31,51 +25,24 @@ body,
   width: 100%;
   min-height: 100%;
   min-width: 100%;
-}
-
-/* Remove default margin in favour of better control in authored CSS */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
   margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+  background: white;
+  background-image: url('../public/art/waves-background.svg');
+  background-repeat: no-repeat;
+  background-position: -45vw 4vw;
+  background-size: 200vw 100%;
+  font-family: "Roboto", sans-serif !important;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-/* Set shorter line heights on headings and interactive elements */
-h1,
-h2,
-h3,
-h4,
-button,
-input,
-label {
-  line-height: 1.1;
-}
-
-/* Balance text wrapping on headings */
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
+@media screen and (max-width: 640px) {
+  html, body, #root {
+    background-repeat: no-repeat;
+    background-size: 120vw;
+    background-attachment: fixed;
+    background-position: -20vw;
+  }
 }
 
 /* A elements that don't have a class get default styles */
@@ -104,15 +71,10 @@ textarea:not([rows]) {
   min-height: 10em;
 }
 
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
-}
 
 /** scrollbar */
 *::-webkit-scrollbar {
-  height: 0.3rem;
-  width: 0.5rem;
+  width: 0;
 }
 
 *::-webkit-scrollbar-track {
@@ -128,11 +90,22 @@ textarea:not([rows]) {
 @supports (scrollbar-gutter: stable) {
   html {
     overflow-y: auto;
-    scrollbar-gutter: stable;
   }
 }
 
 ::selection {
   background-color: #ff9eb1 !important;
   color: #f9f9f9;
+}
+
+.glass-card {
+  background: linear-gradient(
+      to right bottom,
+      rgba(246, 246, 246, 0.2),
+      rgba(246, 246, 246, 0.1)
+  ), url('/common/noise.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: saturation;
+  backdrop-filter: blur(1.25rem);
 }
