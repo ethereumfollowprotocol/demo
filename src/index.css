@@ -27,7 +27,6 @@ body,
   min-width: 100%;
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
   background: white;
   background-image: url('../public/art/waves-background.svg');
   background-repeat: no-repeat;
