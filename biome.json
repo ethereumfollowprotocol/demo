@@ -46,7 +46,7 @@
         "useSelfClosingElements": "off",
         "noUnusedTemplateLiteral": "off"
       },
-      "a11y": { "noSvgWithoutTitle": "off" },
+      "a11y": { "noSvgWithoutTitle": "off", "useKeyWithClickEvents": "off" },
       "nursery": { "noUnusedImports": "off" },
       "suspicious": { "noExplicitAny": "off" },
       "correctness": { "noUndeclaredVariables": "off" }

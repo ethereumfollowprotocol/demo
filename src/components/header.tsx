@@ -1,8 +1,8 @@
-import { Button, Link } from '@radix-ui/themes'
+import { Link } from '@radix-ui/themes'
 
 export function Header() {
   return (
-    <header className='flex space-x-3 fixed top-0 left-4 right-4 justify-end items-center h-16'>
+    <header className='navigation backdrop-blur-lg bg-white/60 lg:bg-transparent lg:backdrop-blur-none flex w-full gap-4 z-50 px-4 sm:gap-8 fixed top-0 left-0 justify-between sm:justify-end items-center py-4'>
       <Link
         href='https://github.com/ethereumfollowprotocol/demo'
         target='_blank'
@@ -10,7 +10,7 @@ export function Header() {
         className='rounded-full bg-transparent'
       >
         <svg
-          className='w-8 h-8 text-gray-800 hover:text-gray-900'
+          className='w-8 h-8 text-gray-800 hover:text-gray-600'
           viewBox='0 0 15 15'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
@@ -27,11 +27,11 @@ export function Header() {
         href='https://x.com/ethfollowpr'
         target='_blank'
         rel='noopener noreferrer'
-        className='rounded-full bg-transparent'
+        className='rounded-full'
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          className='w-8 h-8 text-gray-800 hover:text-gray-900'
+          className='w-8 h-8 text-gray-800 hover:text-gray-600'
           viewBox='0 0 448 512'
         >
           <path
@@ -48,7 +48,7 @@ export function Header() {
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          className='w-10 h-10 text-gray-800 hover:text-indigo-600'
+          className='w-10 h-10 text-gray-800 transition-colors hover:text-indigo-600'
           viewBox='0 0 24 24'
         >
           <path
@@ -57,17 +57,20 @@ export function Header() {
           ></path>
         </svg>
       </Link>
-
-      <Button color='gray' size='1' variant='solid' className='text-white bg-gray-800' asChild>
-        <Link
-          href='https://docs.ethfollow.xyz/intro'
-          target='_blank'
-          rel='noopener noreferrer'
-          className='text-white rounded-md'
+      <Link
+        href='https://demo.ethfollow.xyz'
+        target='_blank'
+        rel='noopener noreferrer'
+        className='text-black font-bold text-lg'
+      >
+        <button
+          type='button'
+          className='bg-[#FFE067] hover:opacity-80 transition-opacity py-2 rounded-xl cursor-pointer justify-center gap-2 w-32 flex items-center'
         >
-          DOCS
-        </Link>
-      </Button>
+          <img src='/common/follow-icon.svg' alt='follow icon' />
+          <p>Docs</p>
+        </button>
+      </Link>
     </header>
   )
 }

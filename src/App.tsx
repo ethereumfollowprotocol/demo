@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Box, Flex, Text, Tabs, Avatar, Separator, Card, Link, Container } from '@radix-ui/themes'
 
@@ -11,6 +12,7 @@ import { fetchEfpUserFollowers, fetchEfpUserFollowing } from '#/fetchers.ts'
 const WALLET_ADDRESS = '0xeb6b293E9bB1d71240953c8306aD2c8aC523516a'
 
 export default function App() {
+  const [activeTab, setActiveTab] = useState<'Followers' | 'Following'>('Followers')
   const { data: ensData, error: ensError, status: ensStatus } = useEnsProfile(WALLET_ADDRESS)
 
   const {
@@ -58,13 +60,9 @@ export default function App() {
   })
 
   return (
-    <Flex pb='5'>
+    <Flex mx='auto' width='100%' px='4' justify='center' className='font-serif'>
       <Header />
-      <Container
-        pt='2'
-        mx='auto'
-        className='w-full sm:max-w-md font-serif sm:bg-zinc-50 rounded-xl sm:shadow-xl'
-      >
+      <div className='w-full mx-auto mt-24 sm:max-w-md font-serif glass-card rounded-xl border-2 border-[#ff9c90]'>
         <Flex direction='column' gap='3'>
           <Box pt='5'>
             <Avatar
@@ -92,7 +90,7 @@ export default function App() {
                 <p className='mx-auto text-center pl-3 sm:pl-0 font-bold text-xl'>
                   {followersAddresses.length}
                 </p>
-                <Text size='2' align='center'>
+                <Text size='2' weight='bold' align='center'>
                   Followers
                 </Text>
               </Flex>
@@ -101,7 +99,7 @@ export default function App() {
                 <p className='mx-auto text-center pl-3 sm:pl-0 font-bold text-xl'>
                   {followingAddresses.length}
                 </p>
-                <Text size='2' align='center'>
+                <Text size='2' weight='bold' align='center'>
                   Following
                 </Text>
               </Flex>
@@ -110,22 +108,22 @@ export default function App() {
           <Box grow='1'>
             <Tabs.Root defaultValue='followers' className='px-3'>
               <Tabs.List size='1' className='mx-auto justify-center shadow-none gap-x-28'>
-                <Tabs.Trigger
-                  value='followers'
-                  className='before:bg-transparent data-[state=active]:bg-zinc-300 hover:bg-zinc-300 hover:rounded-full rounded-full p-1.5 data-[state=active]:font-extrabold'
+                <div
+                  onClick={() => setActiveTab('Followers')}
+                  className={`before:bg-transparent p-3 cursor-pointer flex items-center ${activeTab === 'Followers' ? 'bg-white/80' : 'transparent hover:bg-white/50'} hover:rounded-full transition-colors rounded-full  data-[state=active]:font-extrabold`}
                 >
                   <Text size='3' weight='bold'>
                     Followers
                   </Text>
-                </Tabs.Trigger>
-                <Tabs.Trigger
-                  value='following'
-                  className='before:bg-transparent data-[state=active]:bg-zinc-300 hover:bg-zinc-300 hover:rounded-full rounded-full p-1.5 data-[state=active]:font-extrabold'
+                </div>
+                <div
+                  onClick={() => setActiveTab('Following')}
+                  className={`before:bg-transparent p-3 cursor-pointer flex items-center ${activeTab === 'Following' ? 'bg-white/80' : 'transparent hover:bg-white/50'} hover:rounded-full transition-colors rounded-full data-[state=active]:font-extrabold`}
                 >
                   <Text size='3' weight='bold'>
                     Following
                   </Text>
-                </Tabs.Trigger>
+                </div>
               </Tabs.List>
               <Box py='5' px='5' mx='auto' height='auto'>
                 <Tabs.Content value='followers' className='h-auto'>
@@ -170,7 +168,7 @@ export default function App() {
             </Tabs.Root>
           </Box>
         </Flex>
-      </Container>
+      </div>
     </Flex>
   )
 }
