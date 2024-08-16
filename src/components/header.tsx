@@ -4,7 +4,7 @@ export function Header() {
   return (
     <header className='navigation backdrop-blur-lg bg-white/60 lg:bg-transparent lg:backdrop-blur-none flex w-full gap-4 z-50 px-4 sm:gap-8 fixed top-0 left-0 justify-between sm:justify-end items-center py-4'>
       <Link
-        href='https://github.com/ethereumfollowprotocol/demo'
+        href='https://github.com/ethereumfollowprotocol/'
         target='_blank'
         rel='noopener noreferrer'
         className='rounded-full bg-transparent'
@@ -24,7 +24,7 @@ export function Header() {
         </svg>
       </Link>
       <Link
-        href='https://x.com/ethfollowpr'
+        href='https://x.com/efp'
         target='_blank'
         rel='noopener noreferrer'
         className='rounded-full'
@@ -58,7 +58,7 @@ export function Header() {
         </svg>
       </Link>
       <Link
-        href='https://demo.ethfollow.xyz'
+        href='https://docs.ethfollow.xyz'
         target='_blank'
         rel='noopener noreferrer'
         className='text-black font-bold text-lg'
@@ -68,7 +68,7 @@ export function Header() {
           className='bg-[#FFE067] hover:opacity-80 transition-opacity py-2 rounded-xl cursor-pointer justify-center gap-2 w-32 flex items-center'
         >
           <img src='/common/follow-icon.svg' alt='follow icon' />
-          <p>Docs</p>
+          <p>DOCS</p>
         </button>
       </Link>
     </header>
