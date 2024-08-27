@@ -83,7 +83,7 @@ export default function App() {
         <Flex direction='column' gap='5' mx='auto' width='100%'>
           <Box>
             <Flex className='space-x-6' align='center' justify='center' pt='5'>
-              <Link target='_blank' rel='noopener noreferrer' href='https://x.com/ethfollowpr'>
+              <Link target='_blank' rel='noopener noreferrer' href='https://x.com/efp'>
                 <Avatar src='/logo.png' fallback='/logo.png' size='3' />
               </Link>
               <Flex className='sm:flex-row flex-col space-x-3' align='center' justify='center'>
@@ -110,7 +110,9 @@ export default function App() {
               <Tabs.List size='1' className='mx-auto justify-center shadow-none gap-x-28'>
                 <div
                   onClick={() => setActiveTab('Followers')}
-                  className={`before:bg-transparent p-3 cursor-pointer flex items-center ${activeTab === 'Followers' ? 'bg-white/80' : 'transparent hover:bg-white/50'} hover:rounded-full transition-colors rounded-full  data-[state=active]:font-extrabold`}
+                  className={`before:bg-transparent p-3 cursor-pointer flex items-center ${
+                    activeTab === 'Followers' ? 'bg-white/80' : 'transparent hover:bg-white/50'
+                  } hover:rounded-full transition-colors rounded-full  data-[state=active]:font-extrabold`}
                 >
                   <Text size='3' weight='bold'>
                     Followers
@@ -118,7 +120,9 @@ export default function App() {
                 </div>
                 <div
                   onClick={() => setActiveTab('Following')}
-                  className={`before:bg-transparent p-3 cursor-pointer flex items-center ${activeTab === 'Following' ? 'bg-white/80' : 'transparent hover:bg-white/50'} hover:rounded-full transition-colors rounded-full data-[state=active]:font-extrabold`}
+                  className={`before:bg-transparent p-3 cursor-pointer flex items-center ${
+                    activeTab === 'Following' ? 'bg-white/80' : 'transparent hover:bg-white/50'
+                  } hover:rounded-full transition-colors rounded-full data-[state=active]:font-extrabold`}
                 >
                   <Text size='3' weight='bold'>
                     Following

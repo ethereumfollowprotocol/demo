@@ -83,10 +83,7 @@ async function fetchPackageLatestVersion(name: string) {
 }
 
 function getUnstableDependencies(dependencies: Record<string, string>) {
-  return (
-    Object.entries(dependencies)
-      .filter(([, version]) => /alpha|beta/.test(version))
-      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
-      .reduce((acc, [name, version]) => ({ ...acc, [name]: version }), {}) as Record<string, string>
-  )
+  return Object.entries(dependencies)
+    .filter(([, version]) => /alpha|beta/.test(version))
+    .reduce((acc, [name, version]) => ({ ...acc, [name]: version }), {}) as Record<string, string>
 }

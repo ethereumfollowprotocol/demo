@@ -25,8 +25,8 @@ export interface EfpUserFollower {
 }
 
 export interface EfpUser extends EfpUserStats {
-  followers: Array<EfpUserFollower | undefined>
-  following: Array<EfpUserFollowing | undefined>
+  followers: (EfpUserFollower | undefined)[]
+  following: (EfpUserFollowing | undefined)[]
 }
 
 /**
@@ -45,7 +45,7 @@ export async function fetchEfpUserStats(address: Address): Promise<EfpResponse<E
 
 export async function fetchEfpUserFollowers(
   address: Address
-): Promise<EfpResponse<Array<EfpUserFollower>>> {
+): Promise<EfpResponse<EfpUserFollower[]>> {
   if (!isAddress(address)) throw new Error(`${address} is not a valid address`)
   const response = await fetch(`${API_URL}/${API_VERSION}/followers/${address}`, {
     method: 'GET'
@@ -53,12 +53,12 @@ export async function fetchEfpUserFollowers(
   if (!response.ok) {
     throw new Error(`Error for ${address}: ${response.statusText}`)
   }
-  return (await response.json()) as EfpResponse<Array<EfpUserFollower>>
+  return (await response.json()) as EfpResponse<EfpUserFollower[]>
 }
 
 export async function fetchEfpUserFollowing(
   address: Address
-): Promise<EfpResponse<Array<EfpUserFollowing>>> {
+): Promise<EfpResponse<EfpUserFollowing[]>> {
   if (!isAddress(address)) throw new Error(`${address} is not a valid address`)
   const response = await fetch(`${API_URL}/${API_VERSION}/following/${address}`, {
     method: 'GET'
@@ -66,7 +66,7 @@ export async function fetchEfpUserFollowing(
   if (!response.ok) {
     throw new Error(`Error for ${address}: ${response.statusText}`)
   }
-  return (await response.json()) as EfpResponse<Array<EfpUserFollowing>>
+  return (await response.json()) as EfpResponse<EfpUserFollowing[]>
 }
 
 export async function fetchEfpUser(address: Address): Promise<EfpResponse<EfpUser>> {
